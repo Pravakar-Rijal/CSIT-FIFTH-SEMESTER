@@ -91,11 +91,11 @@ void encrypt(void)
 
 void decrypt(void)
 {
-    // Necessary Variable Declarations
+       // Necessary Variable Declarations
     int j=0,key;
-    char text[100],cipher_text[100],plain_text[100];
+    char text[100],cipher_text[100],decipher_text[100];
 
-    //Cipher text input from User
+    //Plain text input from User
     printf("\nCiphered text to decrypt:\n");
     gets(cipher_text);
     
@@ -103,10 +103,10 @@ void decrypt(void)
     for(int i=0;i<strlen(cipher_text);i++)
     {
     if((cipher_text[i]>=65&&cipher_text[i]<=90)||cipher_text[i]>=97&&cipher_text[i]<=122)
-     {
+    {
         text[j]=toupper(cipher_text[i]);
         j++;
-     }
+    }
     }
     
     //Cipher text without formatting
@@ -123,14 +123,21 @@ void decrypt(void)
     //Decryption algorithm
     for(int i=0;i<strlen(text);i++)
     {
-    plain_text[i]=((((text[i]-65)-key)%26)+65);
+        if(((text[i]-65)-key)<0)
+        {
+            decipher_text[i]=((((text[i]-65)-key)+26)+65);
+        }
+        else
+        {
+            decipher_text[i]=((((text[i]-65)-key)%26)+65);
+        }
     }
     
     //Deciphered text
     printf("\nThe decrypted message:\n");
-    for(int i=0;i<strlen(plain_text);i++)
+    for(int i=0;i<strlen(decipher_text);i++)
     {
-        printf("%c",plain_text[i]);
+        printf("%c",decipher_text[i]);
     }
     //Back to Menu
     menu();
