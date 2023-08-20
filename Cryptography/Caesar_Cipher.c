@@ -1,24 +1,28 @@
-//C-PROGRAM TO IMPLEMENT CAESAR CIPHER
+
 #include <stdio.h>
 #include <string.h>
-
+#include <ctype.h>
 int main() 
 {
-    char alphabet[26];
     int key;
-    char plain_text[1000];
-    int ascii=65;
-    //Assigning alphabet to array
-    for(int i=0;i<26;i++)
-    {
-        alphabet[i]=ascii;
-        ascii=ascii+1;
-    }
-   
+    int j=0;
+    char plain_text[100],text[100];
+
     //Plain text input from User
     printf("\nPlain text to encrypt:\n");
-    gets(plain_text);
-   
+    gets(text);
+    for(int i=0;i<strlen(text);i++)
+    {
+    if((text[i]>=65&&text[i]<=90)||text[i]>=97&&text[i]<=122)
+    {
+        plain_text[j]=toupper(text[i]);
+        j++;
+    }
+    }
+    for(int i=0;i<strlen(plain_text);i++)
+    {
+        printf("%c",plain_text[i]);
+    }
     //Key input from User
     printf("\nEnter the Key to encrypt:");
     scanf("%d",&key);
@@ -35,5 +39,7 @@ int main()
     {
         printf("%c",plain_text[i]);
     }
+
     return 0;
+    
 }
