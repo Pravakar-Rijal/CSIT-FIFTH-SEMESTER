@@ -1,11 +1,12 @@
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <time.h>
-
-int power(int n,int p)
+#define PRIME -1
+#define NONPRIME 1
+double power(double n,double p)
 {
-    int temp=1;
+    double temp=1.0;
     while(p>0)
     {
         temp *= n;
@@ -13,30 +14,58 @@ int power(int n,int p)
     }
     return temp;
 }
-void powerof2 (int n,int* a,int* b)
+
+void find_k_m(double n,double* a,double* b)
 {
-    float temp1;
-    for(int i=0;i<n;i++)
+    double temp1;
+    for(int i=0;i<n-1;i++)
     {
-        temp1= n % power(2,i);
+        temp1= fmod((n-1),power(2,i));
         if(!(temp1 == 0))
         {
              *a=i-1;
-             *b= n / power(2,i-1);
+             *b= (n-1) / power(2,i-1);
              break;
         }
     }
 }
 
-int main() {
-    int n,k,m,a;
+void choose_a(double* a,double n)
+{
     time_t t1;
-    printf("\nEnter Number: ");
-    scanf("%d",&n);
-    powerof2(n,&k,&m);
     srand ( (unsigned) time (&t1)); 
-    a=(rand() % (n-1)) + 2;
-    
-    printf("\nNearest power of 2 is %d %d %d.\n",k,m,a);
+    *a=(fmod((double)rand(),(n-1))) + 2.0;
+}
+
+int calc_b_values(double a,double m,double n)
+{
+    double b0;
+    double result=pow(2,m);
+    double num=n;
+    //b0= power(2,m) % n;
+    b0=fmod(result,num);
+    return b0;
+    while(b0==PRIME || b0==NONPRIME)
+    {
+    if(b0 == PRIME)
+    return PRIME;
+    else if(b0 == NONPRIME)
+    return NONPRIME;
+    else
+    b0= fmod((b0*b0),n);
+    }
+}
+int main() {
+    double n,k,m,a;
+    printf("\nEnter Number: ");
+    scanf("%f",&n);
+    find_k_m(n,&k,&m);
+    choose_a(&a,n);
+    if(calc_b_values(a,m,n)==PRIME)
+    printf("\n%f is prime.",n);
+    else if(calc_b_values(a,m,n)==NONPRIME)
+    printf("\n%f is not prime.",n);
+    else
+    printf("k= %f m=%f a=%f calcvalues=%f.\n",k,m,a,calc_b_values(a,m,n));
     return 0;
 }
