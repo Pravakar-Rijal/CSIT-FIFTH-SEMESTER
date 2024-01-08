@@ -6,15 +6,15 @@
 #define n(p,q) (p*q)
 #define phi_n(p,q) ((p-1)*(q-1))
 
+int input();
 void rsa_key_generation(int*,int*);
 int rsa_encryption(int,int);
 int rsa_decryption(int,int);
 
 int main()
 {
-    int public_key,private_key,message,cipher;
-    printf("\nEnter the message to encrypt:\n");
-    scanf("%d",&message);
+    int message=input();
+    int public_key,private_key,cipher;
     rsa_key_generation(&public_key,&private_key);
     cipher=rsa_encryption(message,public_key);
     printf("\nEncrypted Message is %d.",cipher);
@@ -23,11 +23,30 @@ int main()
     return 0;
 }
 
-void rsa_key_generation(int* public_key,int* private_key)
+int input()
 {
-    int seed=37;
-    int gcd(int a,int b,int c)
+    /*
+    char sentence[100];
+    int message[100];
+    printf("\nEnter the message to encrypt:\n");
+    scanf("%s",&sentence);
+    for (int i = 0; message[i] != '\0'; i++) 
     {
+        message[i]=((int)sentence[i]);
+    }
+    */
+    int message;
+    do
+    {
+     printf("\nEnter the message to encrypt:\n");
+     scanf("%d",&message);
+    }while(message > n(p,q));
+    
+    return message;
+}
+    
+int gcd(int a,int b,int c)
+{
         if(c==0)
         {
         if(b==0)
@@ -55,18 +74,27 @@ void rsa_key_generation(int* public_key,int* private_key)
                 t1=t2;
                 t2=t;
             }
+            if(t1<0)
+            {
+                do
+                 {
+                   t1 += phi_n(p,q);
+                   
+                 }while(t1<0);
+            }
             return t1;
         }
-    }
-    
+}
+
+void rsa_key_generation(int* public_key,int* private_key)
+{
+    int seed=39;
     do
     {
     srand(seed++);
     *public_key=(rand()%(phi_n(p,q)-2))+2;
-    }while(gcd(*public_key,phi_n(p,q),0)==1);
-    
+    }while(gcd(*public_key,phi_n(p,q),0) !=1);
     *private_key=gcd(*public_key,phi_n(p,q),1);
-    
 }
 
 long long power(long long base,long long exp,long long mod)
@@ -76,14 +104,13 @@ long long power(long long base,long long exp,long long mod)
     
     while(exp>0)
     {
-        if(exp % 2 ==0)
+        if(exp % 2 ==1)
             result= (result*base) % mod;
         exp /= 2;
         base= (base*base) % mod;
     }
     return result;
 }
-
 
 int rsa_encryption(int message,int public_key)
 {
@@ -98,4 +125,3 @@ int rsa_decryption(int cipher,int private_key)
     message=power(cipher,private_key,n(p,q));
     return message;
 }
-
