@@ -2,32 +2,29 @@
 #include <string.h>
 #define p 11
 #define q 5
+#define n p×q
+#define phi_n (p-1)*(q-1)
 
-int public_key;
-
-int rsa_key_generation();
+void rsa_key_generation();
 int rsa_encryption();
 int rsa_decryption();
 
 int main()
 {
-    int message,ciper;
+    int public_key,private_key,message,ciper;
     printf("\nEnter the message to encrypt:\n");
     scanf("%d",&message);
-    rsa
-    cipher=rsa_encryption(message);
+    rsa_key_generation(&public_key,&private_key);
+    cipher=rsa_encryption(message,public_key);
     printf("\nEncrypted Message is %d.",cipher);
-    message=rsa_decryption(cipher);
+    message=rsa_decryption(cipher,private_key);
     printf("\nDecrypted Message is %d.",message);
     return 0;
 }
 
-int rsa_key_generation()
+void rsa_key_generation(int* public_key,int* private_key)
 {
-   int n,phi_n,seed=37,private_key;
-    n=p×q;
-    phi_n=(p-1)*(q-1);
-   
+   int seed=37;
     int gcd(int a,int b,int c)
     {
         if(c==0)
@@ -64,12 +61,40 @@ int rsa_key_generation()
     do
     {
     srand(seed++);
-    public_key=(rand()%(phi_n-2))+2;
+    *public_key=(rand()%(phi_n-2))+2;
     }while(gcd(e,phi_n,0)==1);
     
-    private_key=gcd(public_key,phi_n,1);
+    *private_key=gcd(*public_key,phi_n,1);
     
 }
 
-int encryption 
+long long power(long long base,long long exp,long long mod)
+{
+    long long result=1;
+    base= base % mod;
+    
+    while(exp>0)
+    {
+        if(exp % 2 ==0)
+            result= (result*base) % mod;
+        exp /= 2;
+        base= (base*base) % mod;
+    }
+    return result;
+}
+
+
+int encryption(int message,int public_key)
+{
+    int cipher;
+    cipher=power(message,public_key,n);
+    return cipher;
+}
+
+int decryption(int cipher,int private_key)
+{
+    int message;
+    message=power(cipher,private_key,n);
+    return message;
+}
 
