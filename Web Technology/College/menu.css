@@ -1,0 +1,46 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:borderbox;
+}
+body{
+    margin:2rem;
+    font-family:sans-serif;
+    text-align:center;
+}
+nav{
+    margin:2rem auto;
+    border:2px solid black;
+    border-radius:1rem;
+    max-width:600px;
+   font-size:2rem;
+   line-height:2rem;
+   
+}
+h1{
+    border-bottom: 2px solid black;
+    background: gold;
+    border-radius: 1rem 1rem 0rem 0rem; 
+    padding:1rem;
+}
+li{
+  list-style-type:none;
+  border-top: 2px solid black;
+}
+li a{
+    display:block;
+}
+li a,li a:visited{
+    
+text-decoration:none;
+
+}
+
+li a:hover, li a:focus{
+background: black;
+color: white;
+    
+}
+li:last-child a{
+    border-radius: 0rem 0rem 1rem 1rem;
+}

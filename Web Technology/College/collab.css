@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.animation{
+    background-color: blue;
+}
+body{
+    background-image: url(img/INVERTEDD\ TEXTSASS.png);
+     transition: background-image 1s;
+}
+
+
+
+body:hover{
+    /* font-family:sans-serif; */
+  background-image: url(img/FINELINEEEEEEEEEEEEEEEEEEEEEE.png);
+    background-repeat: no-repeat;
+    background-size: auto;
+     transition: background-image 1s; 
+}
+
+.head h1{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #ed3939;
+    font-size: 4rem;
+    text-align: center;
+    text-transform: uppercase ;
+    padding: 0;
+}
+.head p{
+    font-family:'Courier New', Courier, monospace;
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+    /* margin-top: 0.005rem; */
+}
+footer{
+    font-size: 1.5rem;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+   
+    margin-left: auto;
+}

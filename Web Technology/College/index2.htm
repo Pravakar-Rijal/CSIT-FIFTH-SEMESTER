@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 2</title>
+</head>
+<body>
+    <form onsubmit="return validateForm()">
+   
+    Username: <input type="text" id="name" name="name" required> <br>
+    Password: <input type="password" id="password" name="password" required minlength="8" ><br>
+
+    <input type="submit" value="submit">
+    </form>
+
+    <script>
+        function validateForm()
+        {
+            
+            var name=document.getElementById('name').value;
+            var pw=document.getElementById('password').value;
+          
+
+           
+            const nameRegex=/^[A-za-z0-9_.]+$/;
+            if(!name || !nameRegex.test(name))
+            { alert("Please enter a  name ");
+                return false;
+
+            }
+
+            if(!pw || pw.length<8)
+            {
+                alert("password be atleast 8 characters ");
+                return false;
+            }
+
+
+        }
+    </script>
+</body>
+</html>

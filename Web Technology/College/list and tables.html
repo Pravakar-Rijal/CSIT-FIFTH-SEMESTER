@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <style>
+        body {
+            font-size: 1.5rem;
+            background-color: antiquewhite;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            background-color: whitesmoke;
+            width: 50%;
+            padding: 5px;
+        }
+
+        .footnote {
+            font-size: small;
+        }
+
+        .footnote2 {
+            font-size: small;
+            text-align: center;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <section class="list">
+        <ul>
+            <h1>CSIT Subjects</h1>
+            <li>C-Programming</li>
+            <li>Artificial Intelligence
+                <ol type="i">
+                    <li>Machine Learning</li>
+                    <li>Natural Language Processing</li>
+                </ol>
+            </li>
+            <li>Web Technology</li>
+            <li>DBMS</li>
+            <li>Computer Networks</li>
+        </ul>
+        <ol type="A">
+            <h2>Web Technology</h1>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+        </ol>
+        <ol type="a">
+            <h2>Computer Networks</h1>
+                <li>Application Layer</li>
+                <li>Presentation Layer</li>
+                <li>Transport Layer</li>
+                <li>Network Layer</li>
+                <li>Data Link Layer</li>
+                <li>Physical Layer</li>
+        </ol>
+        <dl>
+            <h2>About CSIT</h2>
+            <dt>C Programming</dt>
+            <dd>This old programming language that has a versatile use. </dd>
+            <dt>Artificial Intelligence</dt>
+            <dd>This subject involves a vast knowledge on AI and it's applications.</dd>
+        </dl>
+    </section>
+    <hr>
+    <section class="table">
+        <table>
+            <caption>Marksheet</caption>
+            <thead>
+                <tr>
+                    <th>Subjects</th>
+                    <th>Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>C Programming</td>
+                    <td>89</td>
+                </tr>
+                <tr>
+                    <td>Artificial Intelligence</td>
+                    <td>92</td>
+                </tr>
+                <tr>
+                    <td>Computer Networks</td>
+                    <td>88</td>
+                </tr>
+                <tr>
+                    <td>Web Technology</td>
+                    <td>93</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Total</td>
+                    <td>334</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="footnote">*Th and pr added.</td>
+                </tr>
+                <tr>
+                    <td class="footnote2" colspan="2">IOST</td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+    <hr>
+    <section>
+        <h2>Students enrolled in CSIT</h2>
+        <p>This table includes the details of the students enrolled in CSIT.</p>
+        <table class="table1">
+            <caption>Students</caption>
+            <thead>
+                <tr>
+                    <th rowspan="2">S.N</th>
+                    <th colspan="2">Name</th>
+                </tr>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2">1</td>
+                    <td>Hari</td>
+                    <td>Bhandari</td>
+                </tr>
+                <tr>
+                    <td>Shyam</td>
+                    <td>Rai</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+</body>
+
+</html>
